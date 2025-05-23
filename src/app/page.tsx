@@ -1,7 +1,9 @@
-import { Projects } from "./_components/projects";
-import { About } from "./_components/about";
-import { Hero } from "./_components/hero";
-import { Contact } from "./_components/contact";
+'use client';
+
+import { About } from './_components/about';
+import { Contact } from './_components/contact';
+import { Hero } from './_components/hero';
+import { Projects } from './_components/projects';
 
 const RootPage = () => {
   return (

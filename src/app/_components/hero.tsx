@@ -1,12 +1,15 @@
-import SparklesText from "@/components/magicui/sparkles-text";
-import { buttonVariants } from "@/components/ui/button";
-import { DATA } from "@/data/resume";
-import { cn } from "@/lib/utils";
-import { ChevronRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import SparklesText from '@/components/magicui/sparkles-text';
+import { buttonVariants } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
+import { usePageContent } from '@/hooks/usePageContent';
+import { cn } from '@/lib/utils';
+import { ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export const Hero = () => {
+  const { getContent, isLoading } = usePageContent();
+
   return (
     <section id="hero">
       <div className="mx-auto w-full max-w-2xl space-y-8">
@@ -16,7 +19,11 @@ export const Hero = () => {
               salut, moi c&apos;est
               <SparklesText className="text-5xl sm:text-7xl" text="hhhallan" />
             </h1>
-            <p className="max-w-[600px] md:text-xl">{DATA.description}</p>
+            {isLoading ? (
+              <Skeleton className="h-6 w-[300px] rounded-md bg-muted/50 dark:bg-muted/20" />
+            ) : (
+              <p className="max-w-[600px] md:text-xl">{getContent('title')}</p>
+            )}
           </div>
           <div className="relative mx-auto h-full w-[250px] sm:w-[300px]">
             <Image
@@ -34,13 +41,13 @@ export const Hero = () => {
             href="#projects"
             className={cn(
               buttonVariants({
-                size: "lg",
+                size: 'lg',
               }),
-              "gap-2 whitespace-pre md:flex",
-              "group relative gap-1 overflow-hidden text-base font-semibold tracking-tighter",
-              "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-offset-2",
-              "bg-[#A07CFE] hover:bg-[#8f64fc] hover:ring-[#8f64fc]",
-              "dark:bg-foreground dark:ring-foreground"
+              'gap-2 whitespace-pre md:flex',
+              'group relative gap-1 overflow-hidden text-base font-semibold tracking-tighter',
+              'transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-offset-2',
+              'bg-[#A07CFE] hover:bg-[#8f64fc] hover:ring-[#8f64fc]',
+              'dark:bg-foreground dark:ring-foreground'
             )}
           >
             Voir mes projets
@@ -50,11 +57,11 @@ export const Hero = () => {
             href="#contact"
             className={cn(
               buttonVariants({
-                variant: "secondary",
-                size: "lg",
+                variant: 'secondary',
+                size: 'lg',
               }),
-              "gap-2 whitespace-pre md:flex",
-              "group relative gap-1 overflow-hidden text-base font-semibold tracking-tighter"
+              'gap-2 whitespace-pre md:flex',
+              'group relative gap-1 overflow-hidden text-base font-semibold tracking-tighter'
             )}
           >
             Me contacter

@@ -1,7 +1,13 @@
-import { ProjectCard } from "@/components/project-card";
-import { DATA } from "@/data/resume";
+'use client';
+
+import { ProjectCard } from '@/components/project-card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { DATA } from '@/data/resume';
+import { useProjects } from '@/hooks/useProjects';
 
 export const Projects = () => {
+  const { projects, isLoading, error } = useProjects();
+
   return (
     <section className="w-full py-12 md:py-24 lg:py-32" id="projects">
       <div className="space-y-12">
@@ -19,18 +25,19 @@ export const Projects = () => {
           </div>
         </div>
         <div className="mx-auto grid max-w-[800px] grid-cols-1 gap-3 md:grid-cols-2">
-          {DATA.projects.map((project, id) => (
-            <ProjectCard
-              href={project.href}
-              key={project.title}
-              title={project.title}
-              description={project.description}
-              dates={project.dates}
-              tags={project.technologies}
-              image={project.image}
-              video={project.video}
-              links={project.links}
-            />
+          {isLoading && (
+            <div className="flex flex-col">
+              <Skeleton className="w-[305px] h-[160px]" />
+              <div>
+                <Skeleton className="w-[150px] h-[20px] mt-2" />
+                <Skeleton className="w-[305px] h-[16px] mt-2" />
+                <Skeleton className="w-[305px] h-[16px] mt-2" />
+              </div>
+            </div>
+          )}
+
+          {projects.map((project, id) => (
+            <ProjectCard project={project} key={project.id} />
           ))}
         </div>
       </div>

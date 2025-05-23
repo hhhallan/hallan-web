@@ -1,16 +1,16 @@
-import { Dock, DockIcon } from "@/components/magicui/dock";
-import { ModeToggle } from "@/components/mode-toggle";
-import { buttonVariants } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { Dock, DockIcon } from '@/components/magicui/dock';
+import { ModeToggle } from '@/components/mode-toggle';
+import { buttonVariants } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { DATA } from "@/data/resume";
-import { cn } from "@/lib/utils";
-import { HomeIcon } from "lucide-react";
-import Link from "next/link";
+} from '@/components/ui/tooltip';
+import { DATA } from '@/data/resume';
+import { cn } from '@/lib/utils';
+import { HomeIcon } from 'lucide-react';
+import Link from 'next/link';
 
 // todo: ajouter langue switch
 
@@ -25,8 +25,8 @@ export default function Navbar() {
               <Link
                 href="/"
                 className={cn(
-                  buttonVariants({ variant: "ghost", size: "icon" }),
-                  "size-12",
+                  buttonVariants({ variant: 'ghost', size: 'icon' }),
+                  'size-12'
                 )}
               >
                 <HomeIcon className="size-4" />
@@ -45,8 +45,8 @@ export default function Navbar() {
                 <Link
                   href={social.url}
                   className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-12",
+                    buttonVariants({ variant: 'ghost', size: 'icon' }),
+                    'size-12'
                   )}
                 >
                   <social.icon className="size-4" />
