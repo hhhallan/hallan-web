@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { Project } from '@/types/notion';
+import { Project } from '@/types/project';
 import { GithubIcon, Globe } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -20,16 +20,25 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, className }: ProjectCardProps) {
   const {
-    disabled,
     name,
-    description,
+    miniDescription,
     type,
-    githubUrl,
-    webUrl,
+    client,
     color,
     technologies,
-    imageUrl,
+    slug,
+    showOnHomepage,
+    disabled,
+    webUrl,
+    githubUrl,
+    image,
   } = project;
+
+  const techNames =
+    technologies
+      ?.map((tech) => tech.tech)
+      .filter((tech): tech is string => tech !== null && tech !== undefined) ||
+    [];
 
   return (
     <Card
@@ -50,7 +59,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
           <div className="flex items-center justify-center p-3">
             <div className="overflow-hidden rounded-t-sm">
               <Image
-                src={imageUrl || '/project/placeholder.svg'}
+                src={image?.url || '/project/placeholder.svg'}
                 alt={name}
                 className="h-auto w-full object-cover object-top"
                 width={1200}
@@ -66,14 +75,14 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
           <span className="font-sans text-xs">{type}</span>
           <div className="hidden font-sans text-xs underline print:visible"></div>
           <ReactMarkdown className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert">
-            {description}
+            {miniDescription}
           </ReactMarkdown>
         </div>
       </CardHeader>
       <CardContent className="mt-auto flex flex-col px-2">
-        {technologies && technologies.length > 0 && (
+        {techNames.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-1">
-            {technologies?.map((tech) => (
+            {techNames.map((tech) => (
               <Badge
                 className="px-1 py-0 text-[10px]"
                 variant="secondary"
