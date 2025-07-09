@@ -1,11 +1,16 @@
 import SparklesText from '@/components/magicui/sparkles-text';
 import { buttonVariants } from '@/components/ui/button';
+import { getHomepage } from '@/lib/api/homepage';
 import { cn } from '@/lib/utils';
 import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export const Hero = () => {
+export const Hero = async () => {
+  const homepage = await getHomepage();
+
+  const d = homepage?.generals;
+
   return (
     <section id="hero">
       <div className="mx-auto w-full max-w-2xl space-y-8">
@@ -16,7 +21,7 @@ export const Hero = () => {
               <SparklesText className="text-5xl sm:text-7xl" text="hhhallan" />
             </h1>
 
-            <p className="max-w-[600px] md:text-xl">title</p>
+            <p className="max-w-[600px] md:text-xl">{d?.role}</p>
           </div>
           <div className="relative mx-auto h-full w-[250px] sm:w-[300px]">
             <Image
@@ -43,7 +48,7 @@ export const Hero = () => {
               'dark:bg-foreground dark:ring-foreground'
             )}
           >
-            Voir mes projets
+            {d?.ctas.ctaProject}
             <ChevronRight className="h-4 w-4 translate-x-0 transform transition-all duration-300 ease-out group-hover:translate-x-1" />
           </Link>
           <Link
@@ -57,7 +62,7 @@ export const Hero = () => {
               'group relative gap-1 overflow-hidden text-base font-semibold tracking-tighter'
             )}
           >
-            Me contacter
+            {d?.ctas.ctaContact}
             <ChevronRight className="h-4 w-4 translate-x-0 transform transition-all duration-300 ease-out group-hover:translate-x-1" />
           </Link>
         </div>

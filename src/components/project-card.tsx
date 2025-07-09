@@ -34,11 +34,11 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
     image,
   } = project;
 
-  const techNames =
-    technologies
-      ?.map((tech) => tech.tech)
-      .filter((tech): tech is string => tech !== null && tech !== undefined) ||
-    [];
+  const techNames = Array.isArray(technologies)
+    ? technologies
+        .map((tech: any) => (typeof tech === 'string' ? tech : tech.tech))
+        .filter((tech: any): tech is string => !!tech)
+    : [];
 
   return (
     <Card

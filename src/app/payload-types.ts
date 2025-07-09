@@ -86,8 +86,12 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    homepage: Homepage;
+  };
+  globalsSelect: {
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -372,6 +376,64 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: string;
+  generals?: {
+    role?: string | null;
+    descriptionAbout?: string | null;
+    ctas?: {
+      ctaProject?: string | null;
+      ctaContact?: string | null;
+    };
+  };
+  projectSection?: {
+    proTag?: string | null;
+    proTitle?: string | null;
+    proDesc?: string | null;
+  };
+  others?: {
+    contact?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  generals?:
+    | T
+    | {
+        role?: T;
+        descriptionAbout?: T;
+        ctas?:
+          | T
+          | {
+              ctaProject?: T;
+              ctaContact?: T;
+            };
+      };
+  projectSection?:
+    | T
+    | {
+        proTag?: T;
+        proTitle?: T;
+        proDesc?: T;
+      };
+  others?:
+    | T
+    | {
+        contact?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
