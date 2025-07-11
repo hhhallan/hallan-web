@@ -59,7 +59,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
           <div className="flex items-center justify-center p-3">
             <div className="overflow-hidden rounded-t-sm">
               <Image
-                src={image?.url || '/project/placeholder.svg'}
+                src={image!.url}
                 alt={name}
                 className="h-auto w-full object-cover object-top"
                 width={1200}

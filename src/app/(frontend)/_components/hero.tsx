@@ -8,7 +8,6 @@ import Link from 'next/link';
 
 export const Hero = async () => {
   const homepage = await getHomepage();
-
   const d = homepage?.generals;
 
   return (
