@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:prod": "NODE_ENV=production next dev",
+    "build:test": "next build && next start"
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "^3.45.0",

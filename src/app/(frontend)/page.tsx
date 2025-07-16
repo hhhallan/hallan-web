@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 
 import { About } from './_components/about';
 import { Contact } from './_components/contact';
