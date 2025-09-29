@@ -82,7 +82,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
       <CardContent className="mt-auto flex flex-col px-2">
         {techNames.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-1">
-            {techNames.map((tech) => (
+            {techNames.map(tech => (
               <Badge
                 className="px-1 py-0 text-[10px]"
                 variant="secondary"

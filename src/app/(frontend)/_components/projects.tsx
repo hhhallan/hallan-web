@@ -25,7 +25,7 @@ export const Projects = async () => {
           </div>
         </div>
         <div className="mx-auto grid max-w-[800px] grid-cols-1 gap-3 md:grid-cols-2">
-          {projects.map((p) => (
+          {projects.map(p => (
             <ProjectCard project={p} key={p.id} />
           ))}
         </div>

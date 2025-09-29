@@ -1,5 +1,4 @@
 import { Dock, DockIcon } from '@/components/magicui/dock';
-import { ModeToggle } from '@/components/mode-toggle';
 import { buttonVariants } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import {
@@ -11,6 +10,7 @@ import { DATA } from '@/data/resume';
 import { cn } from '@/lib/utils';
 import { HomeIcon } from 'lucide-react';
 import Link from 'next/link';
+import { AnimatedThemeToggler } from './magicui/animated-theme-toggler';
 
 // todo: ajouter langue switch
 
@@ -62,7 +62,7 @@ export default function Navbar() {
         <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>
-              <ModeToggle />
+              <AnimatedThemeToggler className="h-[1.2rem] w-[1.2rem]" />
             </TooltipTrigger>
             <TooltipContent>
               <p>Theme</p>
